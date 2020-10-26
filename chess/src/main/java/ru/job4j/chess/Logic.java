@@ -17,24 +17,22 @@ public final class Logic {
         int index = findBy(source);
         Figure figure = figures[index];
         Cell[] steps = figures[index].way(dest);
-        if(!free(steps)){
-            throw new OccupiedCellException();
-        };
-        figures[index] = figures[index].copy(dest);
+        if(free(steps)){
+            figures[index] = figures[index].copy(dest);
+        }
     }
 
     private boolean free(Cell[] steps) throws OccupiedCellException {
-        boolean check = true;
         for (Figure figure: figures)
         {
             for (Cell cell:steps) {
-                if(figure.position().equals(steps)){
-                    check = false;
+                if(figure.position() == cell){
+                    throw new OccupiedCellException();
                 }
             }
 
         }
-        return check;
+        return true;
     }
 
     public void clean() {
