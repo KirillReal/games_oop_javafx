@@ -26,7 +26,7 @@ public final class Logic {
         for (Figure figure: figures)
         {
             for (Cell cell:steps) {
-                if(figure.position() == cell){
+                if(figure.position().equals(cell)){
                     throw new OccupiedCellException();
                 }
             }
